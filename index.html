@@ -245,6 +245,179 @@
     </div>
 
     <div class="cta-row" style="margin-top:16px;">
+      <a href="https://chat.whatsapp.com/LLoOKkhfiMoByRvdR2g9jB?s=cl&amp;p=a&amp;ilr=1" class="btn-join" id="joinGroupBtn" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        GABUNG GRUP MEMBER VIP
+      </a>
+    </div>
+
+    <div class="meta-row">
+      <span>UKURAN FILE · <b>—</b></span>
+      <span class="ok">● TERPINDAI AMAN</span>
+      <span>DIPERBARUI · <b>—</b></span>
+      <span>PLATFORM · <b>ANDROID</b></span>
+    </div>
+  </section>
+
+  <section class="panel" id="panel">
+    <div class="panel-inner">
+      <div class="panel-head">
+        <div class="panel-title"><span class="badge">VIP</span> Paket Akses Prioritas</div>
+        <div class="tier-price">Termasuk dalam <b>Member VIP</b></div>
+      </div>
+      <div class="feature-grid">
+        <div class="feature">
+          <div class="ic">⚡</div>
+          <h3>Server Prioritas</h3>
+          <p>Jalur unduhan khusus member VIP dengan kecepatan lebih tinggi dibanding akses reguler.</p>
+        </div>
+        <div class="feature">
+          <div class="ic">⟲</div>
+          <h3>Update Otomatis</h3>
+          <p>Notifikasi build terbaru terkirim langsung, tanpa perlu mencari link baru setiap rilis.</p>
+        </div>
+        <div class="feature">
+          <div class="ic">✦</div>
+          <h3>Dukungan Personal</h3>
+          <p>Bantuan instalasi dan troubleshooting melalui kanal support khusus member VIP.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="build-strip">
+    <div class="build-cell"><div class="lbl">Versi Build</div><div class="val cyan">9.9.9</div></div>
+    <div class="build-cell"><div class="lbl">Status</div><div class="val gold">VIP ONLY</div></div>
+    <div class="build-cell"><div class="lbl">Kompatibilitas</div><div class="val">Android 8+</div></div>
+    <div class="build-cell"><div class="lbl">Region</div><div class="val">Global</div></div>
+  </div>
+
+  <div class="section-label">Panduan Penggunaan</div>
+  <div class="tut-wrap">
+    <div class="tut-tabs">
+      <button class="tut-tab active" id="tabInstallBtn" onclick="switchTut('install')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M4 20h16"/></svg>
+        Cara Pasang
+      </button>
+      <button class="tut-tab" id="tabUpdateBtn" onclick="switchTut('update')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v6h-6"/></svg>
+        Cara Update
+      </button>
+    </div>
+
+    <!-- INSTALASI -->
+    <div class="tut-panel install active" id="panelInstall">
+      <div class="video-card">
+        <a href="https://youtube.com/shorts/je5l6hm5XC4?si=KYqtmgCDHIXkscka" class="video-frame" id="tutorialVideoLink" target="_blank" rel="noopener">
+          <div class="video-play">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <div class="video-scan"></div>
+        </a>
+        <div class="video-info">
+          <h4>Tutorial Cara Pasang</h4>
+          <p>Tonton video langkah demi langkah untuk memasang aplikasi dengan benar, mulai dari unduh sampai aktivasi member VIP.</p>
+          <span class="tag">Ganti tautan video pada tombol di atas</span>
+        </div>
+      </div>
+      <div class="tut-note">
+        <d font-family:'Space Mono',monospace; max-width:420px; line-height:1.6;}
+
+  /* tutorial tabs */
+  .tut-wrap{margin-bottom:56px;}
+  .tut-tabs{display:inline-flex; gap:6px; padding:5px; border:1px solid var(--line); border-radius:14px; background:rgba(255,255,255,0.015); margin-bottom:24px;}
+  .tut-tab{font-family:'Space Mono',monospace; font-size:11.5px; letter-spacing:1px; text-transform:uppercase; color:var(--text-dim); background:transparent; border:none; padding:11px 20px; border-radius:10px; cursor:pointer; font-weight:700; transition:all .2s ease; display:flex; align-items:center; gap:8px;}
+  .tut-tab.active{color:#04060c; background:linear-gradient(120deg,var(--cyan),#8be9ff); box-shadow:0 8px 20px -8px rgba(62,230,255,0.6);}
+  .tut-panel{display:none;}
+  .tut-panel.active{display:block; animation:fadein .35s ease;}
+  @keyframes fadein{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+
+  .tut-list{display:flex; flex-direction:column; border:1px solid var(--line); border-radius:18px; overflow:hidden;}
+  .tut-item{display:flex; gap:20px; padding:24px 26px; border-bottom:1px solid var(--line); position:relative;}
+  .tut-item:last-child{border-bottom:none;}
+  .tut-item:hover{background:rgba(62,230,255,0.03);}
+  .tut-num{flex-shrink:0; width:44px; height:44px; border-radius:12px; border:1px solid rgba(62,230,255,0.35); background:rgba(62,230,255,0.06); color:var(--cyan); font-family:'Orbitron',sans-serif; font-weight:800; font-size:15px; display:flex; align-items:center; justify-content:center;}
+  .tut-panel.update .tut-num{border-color:rgba(160,107,255,0.4); background:rgba(160,107,255,0.08); color:var(--violet);}
+  .tut-body h4{font-size:16px; font-weight:700; margin-bottom:6px; letter-spacing:0.2px;}
+  .tut-body p{font-size:13px; color:var(--text-dim); line-height:1.6; font-weight:600; max-width:600px;}
+  .tut-body .tag{display:inline-block; margin-top:10px; font-family:'Space Mono',monospace; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--gold); border:1px solid rgba(255,203,87,0.3); background:rgba(255,203,87,0.06); padding:4px 10px; border-radius:999px;}
+
+  .tut-note{display:flex; gap:12px; align-items:flex-start; margin-top:18px; padding:16px 18px; border:1px solid rgba(255,77,109,0.25); background:rgba(255,77,109,0.05); border-radius:14px;}
+  .tut-note .ic{color:var(--danger); font-family:'Orbitron',sans-serif; font-weight:800; font-size:13px;}
+  .tut-note p{font-size:12px; color:#ffb3c0; line-height:1.6; font-weight:600;}
+
+  @media (max-width:600px){
+    .tut-item{flex-direction:column; gap:12px;}
+    .tut-tabs{width:100%;}
+    .tut-tab{flex:1; justify-content:center;}
+  }
+
+  /* video tutorial card */
+  .video-card{display:flex; gap:24px; border:1px solid var(--line); border-radius:18px; padding:20px; align-items:center; background:rgba(255,255,255,0.015);}
+  .video-frame{
+    position:relative; flex-shrink:0; width:220px; aspect-ratio:16/9; border-radius:14px; overflow:hidden;
+    display:flex; align-items:center; justify-content:center; text-decoration:none;
+    background:
+      radial-gradient(circle at 30% 20%, rgba(62,230,255,0.18), transparent 55%),
+      radial-gradient(circle at 75% 80%, rgba(160,107,255,0.20), transparent 55%),
+      #0a1220;
+    border:1px solid rgba(62,230,255,0.3);
+    box-shadow:0 18px 40px -18px rgba(62,230,255,0.5);
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .video-frame:hover{transform:translateY(-3px); box-shadow:0 22px 46px -14px rgba(62,230,255,0.65);}
+  .video-play{
+    width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(120deg,var(--cyan),#8be9ff); color:#04060c;
+    box-shadow:0 0 0 6px rgba(62,230,255,0.12), 0 10px 24px -6px rgba(62,230,255,0.7);
+    z-index:1;
+  }
+  .video-scan{position:absolute; inset:0; background:repeating-linear-gradient(to bottom, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 3px); pointer-events:none;}
+  .video-info h4{font-size:16px; font-weight:700; margin-bottom:8px;}
+  .video-info p{font-size:13px; color:var(--text-dim); line-height:1.6; font-weight:600; max-width:460px;}
+  .video-info .tag{display:inline-block; margin-top:12px; font-family:'Space Mono',monospace; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--gold); border:1px solid rgba(255,203,87,0.3); background:rgba(255,203,87,0.06); padding:4px 10px; border-radius:999px;}
+
+  @media (max-width:600px){
+    .video-card{flex-direction:column; align-items:flex-start;}
+    .video-frame{width:100%;}
+  }
+
+  @media (max-width:760px){
+    .feature-grid{grid-template-columns:1fr;}
+    .build-strip{grid-template-columns:repeat(2,1fr);}
+    .build-cell{border-bottom:1px solid var(--line);}
+    .steps{grid-template-columns:repeat(2,1fr);}
+    .trust{flex-direction:column; align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+
+<div class="grid-field"></div>
+<div class="glow-a"></div>
+<div class="glow-b"></div>
+<div class="scanline"></div>
+
+<main>
+  <div class="topbar">
+    <div class="brand"><div class="mark">◆</div>NAMZ<span>//CLIENT</span></div>
+    <div class="clock" id="clock">SYNC <b>2099.01.01</b> · 00:00:00</div>
+  </div>
+
+  <section class="hero">
+    <div class="eyebrow"><span class="dot"></span> AKSES VIP TERVERIFIKASI</div>
+    <h1>DOWNLOAD TERMINAL<span class="yr">BUILD // 2099</span></h1>
+    <p class="subline">Paket klien performa tinggi untuk member VIP. Satu tautan, satu file, akses instan ke build terbaru — dirancang untuk kecepatan dan stabilitas kelas atas.</p>
+
+    <div class="cta-row">
+      <a href="https://www.mediafire.com/file/mkpkgbmbpfwwbro/DADA_HS_NAMZ_NEW_OB.7z/file" class="btn-download" id="downloadBtn" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M4 20h16"/></svg>
+        UNDUH APK · v9.9.9
+      </a>
+      <a href="#panel" class="btn-secondary">Lihat Detail Paket VIP</a>
+    </div>
+
+    <div class="cta-row" style="margin-top:16px;">
       <a href="https://chat.whatsapp.com/LLoOKkhfiMoByRvdR2g9jB?s=cl&p=a&ilr=1" class="btn-join" id="joinGroupBtn" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         GABUNG GRUP MEMBER VIP
