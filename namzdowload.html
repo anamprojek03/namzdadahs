@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NAMZ VIP ACCESS // Download Terminal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Orbitron:wght@600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-0:#04060c;
+    --bg-1:#070c18;
+    --panel:#0b1220;
+    --line:rgba(120,170,255,0.14);
+    --cyan:#3ee6ff;
+    --violet:#a06bff;
+    --gold:#ffcb57;
+    --text:#dce6f5;
+    --text-dim:#6d7f9c;
+    --danger:#ff4d6d;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg-0);
+    color:var(--text);
+    font-family:'Rajdhani',sans-serif;
+    overflow-x:hidden;
+    position:relative;
+    min-height:100vh;
+  }
+
+  /* ambient backdrop */
+  .grid-field{
+    position:fixed; inset:0; z-index:0;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:64px 64px;
+    -webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 20%, #000 10%, transparent 75%);
+            mask-image:radial-gradient(ellipse 80% 60% at 50% 20%, #000 10%, transparent 75%);
+    opacity:0.5;
+  }
+  .glow-a{position:fixed; top:-260px; left:-160px; width:640px; height:640px; background:radial-gradient(circle, rgba(62,230,255,0.20), transparent 70%); filter:blur(10px); z-index:0; pointer-events:none;}
+  .glow-b{position:fixed; bottom:-300px; right:-200px; width:680px; height:680px; background:radial-gradient(circle, rgba(160,107,255,0.20), transparent 70%); filter:blur(10px); z-index:0; pointer-events:none;}
+  .scanline{position:fixed; inset:0; z-index:2; pointer-events:none; background:repeating-linear-gradient(to bottom, rgba(255,255,255,0.018) 0px, rgba(255,255,255,0.018) 1px, transparent 1px, transparent 3px); mix-blend-mode:overlay; opacity:0.5;}
+
+  main{position:relative; z-index:1; max-width:1080px; margin:0 auto; padding:0 24px;}
+
+  /* topbar */
+  .topbar{display:flex; align-items:center; justify-content:space-between; padding:28px 0; border-bottom:1px solid var(--line);}
+  .brand{display:flex; align-items:center; gap:12px; font-family:'Orbitron',sans-serif; font-weight:800; letter-spacing:2px; font-size:16px;}
+  .brand .mark{width:32px; height:32px; border:1.5px solid var(--cyan); border-radius:8px; display:flex; align-items:center; justify-content:center; color:var(--cyan); font-size:13px; box-shadow:0 0 18px rgba(62,230,255,0.35) inset, 0 0 14px rgba(62,230,255,0.25);}
+  .brand span{color:var(--text-dim); font-weight:600;}
+  .clock{font-family:'Space Mono',monospace; font-size:12px; color:var(--text-dim); letter-spacing:1px;}
+  .clock b{color:var(--cyan); font-weight:700;}
+
+  /* hero */
+  .hero{padding:76px 0 40px; text-align:center; position:relative;}
+  .eyebrow{display:inline-flex; align-items:center; gap:10px; font-family:'Space Mono',monospace; font-size:11px; letter-spacing:3px; color:var(--gold); text-transform:uppercase; border:1px solid rgba(255,203,87,0.35); background:rgba(255,203,87,0.06); padding:8px 16px; border-radius:999px; margin-bottom:28px;}
+  .eyebrow .dot{width:6px; height:6px; border-radius:50%; background:var(--gold); box-shadow:0 0 10px var(--gold); animation:pulse 1.6s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.35;}}
+
+  h1{font-family:'Orbitron',sans-serif; font-weight:900; font-size:clamp(36px,7vw,74px); line-height:1.02; letter-spacing:-0.5px; background:linear-gradient(135deg,#f4f8ff 10%,var(--cyan) 55%,var(--violet) 100%); -webkit-background-clip:text; background-clip:text; color:transparent; text-shadow:0 0 60px rgba(62,230,255,0.15);}
+  h1 .yr{display:block; font-size:0.34em; letter-spacing:14px; color:var(--text-dim); -webkit-text-fill-color:var(--text-dim); margin-top:14px; font-weight:700;}
+
+  .subline{max-width:560px; margin:26px auto 0; font-size:17px; color:var(--text-dim); line-height:1.6; font-weight:600;}
+
+  .cta-row{display:flex; align-items:center; justify-content:center; gap:16px; margin-top:44px; flex-wrap:wrap;}
+  .btn-download{
+    position:relative; display:inline-flex; align-items:center; gap:12px;
+    font-family:'Orbitron',sans-serif; font-weight:800; font-size:15px; letter-spacing:1px;
+    color:#04060c; background:linear-gradient(120deg,var(--cyan),#8be9ff);
+    padding:19px 34px; border-radius:14px; text-decoration:none;
+    box-shadow:0 0 0 1px rgba(62,230,255,0.5), 0 18px 40px -12px rgba(62,230,255,0.55);
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .btn-download:hover{transform:translateY(-3px); box-shadow:0 0 0 1px rgba(62,230,255,0.8), 0 24px 48px -10px rgba(62,230,255,0.7);}
+  .btn-download svg{width:18px; height:18px;}
+  .btn-secondary{
+    display:inline-flex; align-items:center; gap:10px; font-weight:700; font-size:14px; letter-spacing:0.5px;
+    color:var(--text); background:transparent; border:1px solid var(--line); padding:18px 26px; border-radius:14px; text-decoration:none;
+    transition:border-color .2s ease, background .2s ease;
+  }
+  .btn-secondary:hover{border-color:var(--violet); background:rgba(160,107,255,0.08);}
+
+  .btn-join{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:'Orbitron',sans-serif; font-weight:700; font-size:13px; letter-spacing:1px;
+    color:var(--violet); background:rgba(160,107,255,0.06); border:1px solid rgba(160,107,255,0.4);
+    padding:14px 26px; border-radius:14px; text-decoration:none;
+    transition:all .25s ease;
+  }
+  .btn-join svg{width:16px; height:16px;}
+  .btn-join:hover{background:rgba(160,107,255,0.14); border-color:var(--violet); color:#f0e8ff; box-shadow:0 14px 30px -14px rgba(160,107,255,0.6); transform:translateY(-2px);}
+
+  .meta-row{display:flex; align-items:center; justify-content:center; gap:28px; margin-top:30px; flex-wrap:wrap; font-family:'Space Mono',monospace; font-size:11.5px; color:var(--text-dim); letter-spacing:0.5px;}
+  .meta-row span{display:flex; align-items:center; gap:7px;}
+  .meta-row b{color:var(--text);}
+  .meta-row .ok{color:#3ee68a;}
+
+  /* VIP panel */
+  .panel{
+    margin:64px 0 44px; border:1px solid var(--line); border-radius:24px; background:linear-gradient(180deg, rgba(20,28,46,0.6), rgba(8,12,22,0.6));
+    padding:38px; position:relative; overflow:hidden;
+  }
+  .panel::before{
+    content:""; position:absolute; inset:-1px; border-radius:24px; padding:1px;
+    background:conic-gradient(from 0deg, var(--cyan), var(--violet), var(--gold), var(--cyan));
+    -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    animation:spin 6s linear infinite; opacity:0.55;
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .panel-inner{position:relative; z-index:1;}
+  .panel-head{display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:26px;}
+  .panel-title{font-family:'Orbitron',sans-serif; font-weight:800; font-size:18px; letter-spacing:1px; display:flex; align-items:center; gap:10px;}
+  .panel-title .badge{font-family:'Space Mono',monospace; font-size:10px; letter-spacing:2px; color:#04060c; background:var(--gold); padding:4px 10px; border-radius:999px; font-weight:700;}
+  .tier-price{font-family:'Space Mono',monospace; font-size:13px; color:var(--text-dim);}
+  .tier-price b{font-family:'Orbitron',sans-serif; color:var(--gold); font-size:20px;}
+
+  .feature-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+  .feature{border:1px solid var(--line); border-radius:16px; padding:20px; background:rgba(255,255,255,0.015);}
+  .feature .ic{width:38px; height:38px; border-radius:10px; display:flex; align-items:center; justify-content:center; background:rgba(62,230,255,0.08); border:1px solid rgba(62,230,255,0.3); color:var(--cyan); margin-bottom:14px;}
+  .feature h3{font-size:15px; font-weight:700; margin-bottom:6px; letter-spacing:0.3px;}
+  .feature p{font-size:12.5px; color:var(--text-dim); line-height:1.55; font-weight:600;}
+
+  /* device / build info */
+  .build-strip{display:grid; grid-template-columns:repeat(4,1fr); border:1px solid var(--line); border-radius:18px; overflow:hidden; margin-bottom:44px;}
+  .build-cell{padding:20px 22px; border-right:1px solid var(--line);}
+  .build-cell:last-child{border-right:none;}
+  .build-cell .lbl{font-family:'Space Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--text-dim); margin-bottom:8px;}
+  .build-cell .val{font-family:'Orbitron',sans-serif; font-size:16px; font-weight:700; color:var(--text);}
+  .build-cell .val.cyan{color:var(--cyan);}
+  .build-cell .val.gold{color:var(--gold);}
+
+  /* steps */
+  .section-label{font-family:'Space Mono',monospace; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--text-dim); margin-bottom:18px; display:flex; align-items:center; gap:12px;}
+  .section-label::after{content:""; flex:1; height:1px; background:var(--line);}
+
+  .steps{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:52px;}
+  .step{border:1px solid var(--line); border-radius:16px; padding:22px 18px; position:relative;}
+  .step .num{font-family:'Orbitron',sans-serif; font-size:26px; font-weight:900; color:transparent; -webkit-text-stroke:1px var(--violet); margin-bottom:14px;}
+  .step h4{font-size:14.5px; font-weight:700; margin-bottom:6px;}
+  .step p{font-size:12px; color:var(--text-dim); line-height:1.5; font-weight:600;}
+
+  /* trust footer */
+  .trust{display:flex; align-items:center; justify-content:space-between; padding:26px 0 40px; border-top:1px solid var(--line); flex-wrap:wrap; gap:16px;}
+  .trust-left{font-family:'Space Mono',monospace; font-size:11px; color:var(--text-dim); line-height:1.7;}
+  .trust-left b{color:var(--text);}
+  .warn{font-size:11.5px; color:var(--danger); font-family:'Space Mono',monospace; max-width:420px; line-height:1.6;}
+
+  /* tutorial tabs */
+  .tut-wrap{margin-bottom:56px;}
+  .tut-tabs{display:inline-flex; gap:6px; padding:5px; border:1px solid var(--line); border-radius:14px; background:rgba(255,255,255,0.015); margin-bottom:24px;}
+  .tut-tab{font-family:'Space Mono',monospace; font-size:11.5px; letter-spacing:1px; text-transform:uppercase; color:var(--text-dim); background:transparent; border:none; padding:11px 20px; border-radius:10px; cursor:pointer; font-weight:700; transition:all .2s ease; display:flex; align-items:center; gap:8px;}
+  .tut-tab.active{color:#04060c; background:linear-gradient(120deg,var(--cyan),#8be9ff); box-shadow:0 8px 20px -8px rgba(62,230,255,0.6);}
+  .tut-panel{display:none;}
+  .tut-panel.active{display:block; animation:fadein .35s ease;}
+  @keyframes fadein{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+
+  .tut-list{display:flex; flex-direction:column; border:1px solid var(--line); border-radius:18px; overflow:hidden;}
+  .tut-item{display:flex; gap:20px; padding:24px 26px; border-bottom:1px solid var(--line); position:relative;}
+  .tut-item:last-child{border-bottom:none;}
+  .tut-item:hover{background:rgba(62,230,255,0.03);}
+  .tut-num{flex-shrink:0; width:44px; height:44px; border-radius:12px; border:1px solid rgba(62,230,255,0.35); background:rgba(62,230,255,0.06); color:var(--cyan); font-family:'Orbitron',sans-serif; font-weight:800; font-size:15px; display:flex; align-items:center; justify-content:center;}
+  .tut-panel.update .tut-num{border-color:rgba(160,107,255,0.4); background:rgba(160,107,255,0.08); color:var(--violet);}
+  .tut-body h4{font-size:16px; font-weight:700; margin-bottom:6px; letter-spacing:0.2px;}
+  .tut-body p{font-size:13px; color:var(--text-dim); line-height:1.6; font-weight:600; max-width:600px;}
+  .tut-body .tag{display:inline-block; margin-top:10px; font-family:'Space Mono',monospace; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--gold); border:1px solid rgba(255,203,87,0.3); background:rgba(255,203,87,0.06); padding:4px 10px; border-radius:999px;}
+
+  .tut-note{display:flex; gap:12px; align-items:flex-start; margin-top:18px; padding:16px 18px; border:1px solid rgba(255,77,109,0.25); background:rgba(255,77,109,0.05); border-radius:14px;}
+  .tut-note .ic{color:var(--danger); font-family:'Orbitron',sans-serif; font-weight:800; font-size:13px;}
+  .tut-note p{font-size:12px; color:#ffb3c0; line-height:1.6; font-weight:600;}
+
+  @media (max-width:600px){
+    .tut-item{flex-direction:column; gap:12px;}
+    .tut-tabs{width:100%;}
+    .tut-tab{flex:1; justify-content:center;}
+  }
+
+  /* video tutorial card */
+  .video-card{display:flex; gap:24px; border:1px solid var(--line); border-radius:18px; padding:20px; align-items:center; background:rgba(255,255,255,0.015);}
+  .video-frame{
+    position:relative; flex-shrink:0; width:220px; aspect-ratio:16/9; border-radius:14px; overflow:hidden;
+    display:flex; align-items:center; justify-content:center; text-decoration:none;
+    background:
+      radial-gradient(circle at 30% 20%, rgba(62,230,255,0.18), transparent 55%),
+      radial-gradient(circle at 75% 80%, rgba(160,107,255,0.20), transparent 55%),
+      #0a1220;
+    border:1px solid rgba(62,230,255,0.3);
+    box-shadow:0 18px 40px -18px rgba(62,230,255,0.5);
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .video-frame:hover{transform:translateY(-3px); box-shadow:0 22px 46px -14px rgba(62,230,255,0.65);}
+  .video-play{
+    width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(120deg,var(--cyan),#8be9ff); color:#04060c;
+    box-shadow:0 0 0 6px rgba(62,230,255,0.12), 0 10px 24px -6px rgba(62,230,255,0.7);
+    z-index:1;
+  }
+  .video-scan{position:absolute; inset:0; background:repeating-linear-gradient(to bottom, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 3px); pointer-events:none;}
+  .video-info h4{font-size:16px; font-weight:700; margin-bottom:8px;}
+  .video-info p{font-size:13px; color:var(--text-dim); line-height:1.6; font-weight:600; max-width:460px;}
+  .video-info .tag{display:inline-block; margin-top:12px; font-family:'Space Mono',monospace; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--gold); border:1px solid rgba(255,203,87,0.3); background:rgba(255,203,87,0.06); padding:4px 10px; border-radius:999px;}
+
+  @media (max-width:600px){
+    .video-card{flex-direction:column; align-items:flex-start;}
+    .video-frame{width:100%;}
+  }
+
+  @media (max-width:760px){
+    .feature-grid{grid-template-columns:1fr;}
+    .build-strip{grid-template-columns:repeat(2,1fr);}
+    .build-cell{border-bottom:1px solid var(--line);}
+    .steps{grid-template-columns:repeat(2,1fr);}
+    .trust{flex-direction:column; align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+
+<div class="grid-field"></div>
+<div class="glow-a"></div>
+<div class="glow-b"></div>
+<div class="scanline"></div>
+
+<main>
+  <div class="topbar">
+    <div class="brand"><div class="mark">◆</div>NAMZ<span>//BODY</span></div>
+    <div class="clock" id="clock">SYNC <b>2099.01.01</b> · 00:00:00</div>
+  </div>
+
+  <section class="hero">
+    <div class="eyebrow"><span class="dot"></span> AKSES VIP TERVERIFIKASI</div>
+    <h1>DOWNLOAD TERMINAL<span class="yr">BUILD // 2099</span></h1>
+    <p class="subline">Paket klien performa tinggi untuk member VIP. Satu tautan, satu file, akses instan ke build terbaru — dirancang untuk kecepatan dan stabilitas kelas atas.</p>
+
+    <div class="cta-row">
+      <a href="https://www.mediafire.com/file/idske7tfyxel7ue/AIMBODY+NAMZ.zip/file" class="btn-download" id="downloadBtn" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M4 20h16"/></svg>
+        UNDUH APK · v9.9.9
+      </a>
+      <a href="#panel" class="btn-secondary">Lihat Detail Paket VIP</a>
+    </div>
+
+    <div class="cta-row" style="margin-top:16px;">
+      <a href="https://chat.whatsapp.com/LLoOKkhfiMoByRvdR2g9jB?s=cl&amp;p=a&amp;ilr=1" class="btn-join" id="joinGroupBtn" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        GABUNG GRUP MEMBER VIP
+      </a>
+    </div>
+
+    <div class="meta-row">
+      <span>UKURAN FILE · <b>—</b></span>
+      <span class="ok">● TERPINDAI AMAN</span>
+      <span>DIPERBARUI · <b>—</b></span>
+      <span>PLATFORM · <b>ANDROID</b></span>
+    </div>
+  </section>
+
+  <section class="panel" id="panel">
+    <div class="panel-inner">
+      <div class="panel-head">
+        <div class="panel-title"><span class="badge">VIP</span> Paket Akses Prioritas</div>
+        <div class="tier-price">Termasuk dalam <b>Member VIP</b></div>
+      </div>
+      <div class="feature-grid">
+        <div class="feature">
+          <div class="ic">⚡</div>
+          <h3>Server Prioritas</h3>
+          <p>Jalur unduhan khusus member VIP dengan kecepatan lebih tinggi dibanding akses reguler.</p>
+        </div>
+        <div class="feature">
+          <div class="ic">⟲</div>
+          <h3>Update Otomatis</h3>
+          <p>Notifikasi build terbaru terkirim langsung, tanpa perlu mencari link baru setiap rilis.</p>
+        </div>
+        <div class="feature">
+          <div class="ic">✦</div>
+          <h3>Dukungan Personal</h3>
+          <p>Bantuan instalasi dan troubleshooting melalui kanal support khusus member VIP.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="build-strip">
+    <div class="build-cell"><div class="lbl">Versi Build</div><div class="val cyan">9.9.9</div></div>
+    <div class="build-cell"><div class="lbl">Status</div><div class="val gold">VIP ONLY</div></div>
+    <div class="build-cell"><div class="lbl">Kompatibilitas</div><div class="val">Android 8+</div></div>
+    <div class="build-cell"><div class="lbl">Region</div><div class="val">Global</div></div>
+  </div>
+
+  <div class="section-label">Panduan Penggunaan</div>
+  <div class="tut-wrap">
+    <div class="tut-tabs">
+      <button class="tut-tab active" id="tabInstallBtn" onclick="switchTut('install')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M4 20h16"/></svg>
+        Cara Pasang
+      </button>
+      <button class="tut-tab" id="tabUpdateBtn" onclick="switchTut('update')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v6h-6"/></svg>
+        Cara Update
+      </button>
+    </div>
+
+    <!-- INSTALASI -->
+    <div class="tut-panel install active" id="panelInstall">
+      <div class="video-card">
+        <a href="https://youtube.com/shorts/je5l6hm5XC4?si=KYqtmgCDHIXkscka" class="video-frame" id="tutorialVideoLink" target="_blank" rel="noopener">
+          <div class="video-play">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <div class="video-scan"></div>
+        </a>
+        <div class="video-info">
+          <h4>Tutorial Cara Pasang</h4>
+          <p>Tonton video langkah demi langkah untuk memasang aplikasi dengan benar, mulai dari unduh sampai aktivasi member VIP.</p>
+          <span class="tag">Ganti tautan video pada tombol di atas</span>
+        </div>
+      </div>
+      <div class="tut-note">
+        <div class="ic">!</div>
+        <p>Jika muncul peringatan "Play Protect", pilih <b>Instal Tanpa Pindai</b> atau <b>Abaikan</b> — ini normal untuk aplikasi di luar Play Store.</p>
+      </div>
+      <div class="tut-note">
+        <div class="ic">!</div>
+        <p>Setelah selesai menggunakan client, ubah kembali namanya dengan menambahkan angka <b>1</b> di belakang nama file/aplikasi. Selain itu, setiap kali ingin memakainya lagi Anda harus mengaktifkannya ulang dari awal seperti pertama kali pasang — client akan <b>otomatis nonaktif</b> setiap kali Anda keluar/login ulang (relog) aplikasi FF.</p>
+      </div>
+    </div>
+
+    <!-- UPDATE -->
+    <div class="tut-panel update" id="panelUpdate">
+      <div class="tut-list">
+        <div class="tut-item">
+          <div class="tut-num">01</div>
+          <div class="tut-body">
+            <h4>Cek Versi Terbaru</h4>
+            <p>Lihat nomor <b>Versi Build</b> pada panel di atas halaman ini, atau tunggu notifikasi update otomatis jika Anda member VIP aktif.</p>
+          </div>
+        </div>
+        <div class="tut-item">
+          <div class="tut-num">02</div>
+          <div class="tut-body">
+            <h4>Unduh Build Terbaru</h4>
+            <p>Tekan kembali tombol <b>UNDUH APK</b> untuk mengambil versi paling baru. Tidak perlu menghapus aplikasi lama terlebih dahulu.</p>
+          </div>
+        </div>
+        <div class="tut-item">
+          <div class="tut-num">03</div>
+          <div class="tut-body">
+            <h4>Pasang di Atas Versi Lama</h4>
+            <p>Buka file APK baru dan pilih <b>Perbarui</b> saat muncul opsi. Sistem akan menimpa versi lama tanpa menghapus pengaturan Anda.</p>
+            <span class="tag">Data & akun VIP tetap tersimpan</span>
+          </div>
+        </div>
+        <div class="tut-item">
+          <div class="tut-num">04</div>
+          <div class="tut-body">
+            <h4>Verifikasi Ulang Bila Diminta</h4>
+            <p>Beberapa update besar mungkin meminta Anda memasukkan ulang kode member VIP. Proses ini hanya berlangsung sekali per update.</p>
+          </div>
+        </div>
+      </div>
+      <div class="tut-note">
+        <div class="ic">!</div>
+        <p>Jangan mencopot pemasangan aplikasi lama sebelum update baru terpasang — status VIP dan progres Anda bisa hilang jika dihapus terlebih dahulu.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="trust">
+    <div class="trust-left">© 2099 NAMZ CLIENT · Akses terbatas untuk member terdaftar<br><b>Ganti tautan unduhan</b> pada tombol di atas dengan URL file APK Anda sendiri.</div>
+    
+</main>
+
+<script>
+  // Ganti '#' pada tombol unduh dengan URL file APK Anda
+  document.getElementById('downloadBtn').addEventListener('click', function(e){
+    if (this.getAttribute('href') === '#') {
+      e.preventDefault();
+      alert('Tautan unduhan belum diatur. Ganti atribut href pada tombol ini dengan URL file APK Anda.');
+    }
+  });
+
+  document.getElementById('tutorialVideoLink').addEventListener('click', function(e){
+    if (this.getAttribute('href') === '#') {
+      e.preventDefault();
+      alert('Tautan video belum diatur. Ganti atribut href pada elemen ini dengan URL video tutorial Anda (YouTube, Drive, dll).');
+    }
+  });
+
+  document.getElementById('joinGroupBtn').addEventListener('click', function(e){
+    if (this.getAttribute('href') === '#') {
+      e.preventDefault();
+      alert('Tautan grup belum diatur. Ganti atribut href pada tombol ini dengan URL grup WhatsApp/Telegram Anda.');
+    }
+  });
+
+  function switchTut(mode){
+    document.getElementById('panelInstall').classList.toggle('active', mode === 'install');
+    document.getElementById('panelUpdate').classList.toggle('active', mode === 'update');
+    document.getElementById('tabInstallBtn').classList.toggle('active', mode === 'install');
+    document.getElementById('tabUpdateBtn').classList.toggle('active', mode === 'update');
+  }
+
+  function tick(){
+    const d = new Date();
+    const pad = n => String(n).padStart(2,'0');
+    document.getElementById('clock').innerHTML =
+      'SYNC <b>' + d.getFullYear() + '.' + pad(d.getMonth()+1) + '.' + pad(d.getDate()) + '</b> · ' +
+      pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds());
+  }
+  tick();
+  setInterval(tick, 1000);
+</script>
+
+</body>
+</html>
